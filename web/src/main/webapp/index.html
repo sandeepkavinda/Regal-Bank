@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regal Banking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="theme-transition">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle-container">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+            <div class="theme-toggle-track">
+                <div class="theme-toggle-thumb">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </div>
+            </div>
+        </button>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <div class="login-container">
+        <div class="login-card glass-effect">
+            <div class="login-header">
+                <div class="logo pulse-animation">
+                    <i class="fas fa-university"></i>
+                    <div class="logo-glow"></div>
+                </div>
+                <h1 class="fade-in-up">Regal Bank</h1>
+                <p class="fade-in-up delay-1">Premium Banking Experience</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group fade-in-up delay-2">
+                    <label for="email">Email Address</label>
+                    <div class="input-container">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <div class="input-focus-effect"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group fade-in-up delay-3">
+                    <label for="password">Password</label>
+                    <div class="input-container">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="passwordIcon"></i>
+                        </button>
+                        <div class="input-focus-effect"></div>
+                    </div>
+                </div>
+                
+                <div id="errorMessage" class="error-message slide-down" style="display: none;"></div>
+                
+                <button type="submit" class="login-btn premium-btn fade-in-up delay-4" id="loginBtn">
+                    <span class="btn-content" id="loginText">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In Securely
+                    </span>
+                    <div class="btn-loader" id="loginSpinner">
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="btn-ripple"></div>
+                </button>
+            </form>
+            
+            <div class="demo-credentials fade-in-up delay-5">
+                <div class="credentials-header">
+                    <i class="fas fa-key"></i>
+                    <span>Demo Access</span>
+                </div>
+                <div class="credentials-grid">
+                    <div class="credential-item">
+                        <div class="credential-role">Administrator</div>
+                        <div class="credential-details">admin@bank.com / admin123</div>
+                    </div>
+                    <div class="credential-item">
+                        <div class="credential-role">Customer</div>
+                        <div class="credential-details">user@bank.com / user123</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-university"></i>
+            </div>
+            <div class="loading-text">SecureBank Pro</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SecureBank Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="theme-transition">
+    <!-- Animated Background -->
+    <div class="animated-bg dashboard-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Premium Header -->
+        <header class="header glass-effect">
+            <div class="header-content">
+                <div class="logo-section fade-in-left">
+                    <div class="logo-mini">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">SecureBank</span>
+                        <span class="brand-suffix">Pro</span>
+                    </div>
+                </div>
+                
+                <div class="header-center">
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search transactions..." class="search-input">
+                    </div>
+                </div>
+
+                <div class="header-actions fade-in-right">
+                    <button class="theme-toggle-header" onclick="toggleTheme()">
+                        <i class="fas fa-sun sun-icon"></i>
+                        <i class="fas fa-moon moon-icon"></i>
+                    </button>
+                    <button class="header-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="header-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <div class="user-profile">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Profile" class="profile-image">
+                        <span class="profile-name">John Doe</span>
+                    </div>
+                    <button class="logout-btn premium-btn-outline" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="welcome-section fade-in-up">
+                <div class="welcome-text">
+                    <h1>Welcome back, <span class="highlight">John</span>! 👋</h1>
+                    <p>Here's your financial overview for today</p>
+                </div>
+                <div class="quick-actions">
+                    <button class="quick-action-btn" onclick="openTransferModal()">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send Money</span>
+                    </button>
+                    <button class="quick-action-btn">
+                        <i class="fas fa-download"></i>
+                        <span>Receive</span>
+                    </button>
+                    <button class="quick-action-btn">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Invest</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Premium Account Cards -->
+            <div class="account-cards fade-in-up delay-1">
+                <div class="account-card premium-card hover-lift">
+                    <div class="card-background">
+                        <div class="card-pattern"></div>
+                    </div>
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>Total Balance</span>
+                            <div class="card-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+2.5%</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-wallet card-icon"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="amount counter" data-target="12345.67">$0</div>
+                        <div class="change">+$312.45 from last month</div>
+                    </div>
+                </div>
+
+                <div class="account-card premium-card hover-lift">
+                    <div class="card-background">
+                        <div class="card-pattern"></div>
+                    </div>
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>Checking</span>
+                            <div class="card-status active">Active</div>
+                        </div>
+                        <i class="fas fa-credit-card card-icon"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="amount counter" data-target="8234.50">$0</div>
+                        <div class="change">•••• •••• •••• 4567</div>
+                    </div>
+                </div>
+
+                <div class="account-card premium-card hover-lift">
+                    <div class="card-background">
+                        <div class="card-pattern"></div>
+                    </div>
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>Savings</span>
+                            <div class="card-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>1.2% APY</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-piggy-bank card-icon"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="amount counter" data-target="4111.17">$0</div>
+                        <div class="change">Growing steadily</div>
+                    </div>
+                </div>
+
+                <div class="account-card premium-card hover-lift">
+                    <div class="card-background">
+                        <div class="card-pattern"></div>
+                    </div>
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>Credit Card</span>
+                            <div class="card-utilization">
+                                <div class="utilization-bar">
+                                    <div class="utilization-fill" style="width: 12%"></div>
+                                </div>
+                                <span>12%</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-credit-card card-icon"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="amount counter" data-target="1234.56">$0</div>
+                        <div class="change">Available: $8,765.44</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Money Transfer Section -->
+            <div class="transfer-section fade-in-up delay-2">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>Quick Transfer</h2>
+                        <p>Send money instantly to any account</p>
+                    </div>
+                    <button class="view-history-btn" onclick="showTransferHistory()">
+                        <span>Transfer History</span>
+                        <i class="fas fa-history"></i>
+                    </button>
+                </div>
+                
+                <div class="transfer-container glass-effect">
+                    <div class="transfer-tabs">
+                        <button class="transfer-tab active" data-tab="quick">
+                            <i class="fas fa-bolt"></i>
+                            <span>Quick Send</span>
+                        </button>
+                        <button class="transfer-tab" data-tab="scheduled">
+                            <i class="fas fa-clock"></i>
+                            <span>Schedule</span>
+                        </button>
+                        <button class="transfer-tab" data-tab="international">
+                            <i class="fas fa-globe"></i>
+                            <span>International</span>
+                        </button>
+                    </div>
+
+                    <div class="transfer-content">
+                        <!-- Quick Transfer Tab -->
+                        <div class="transfer-tab-content active" id="quick-tab">
+                            <form id="quickTransferForm" class="transfer-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="fromAccount">From Account</label>
+                                        <div class="account-selector">
+                                            <select id="fromAccount" name="fromAccount" required>
+                                                <option value="checking">Checking Account - $8,234.50</option>
+                                                <option value="savings">Savings Account - $4,111.17</option>
+                                            </select>
+                                            <i class="fas fa-chevron-down select-icon"></i>
+                                        </div>
+                                    </div>
+                                    <div class="transfer-arrow">
+                                        <button type="button" class="swap-accounts-btn" onclick="swapAccounts()">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="toAccount">To Account / Email</label>
+                                        <div class="recipient-input">
+                                            <input type="text" id="toAccount" name="toAccount" placeholder="Enter email or account number" required>
+                                            <button type="button" class="contacts-btn" onclick="showContacts()">
+                                                <i class="fas fa-address-book"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="amount-section">
+                                    <div class="amount-input-container">
+                                        <label for="transferAmount">Amount</label>
+                                        <div class="amount-input">
+                                            <span class="currency-symbol">$</span>
+                                            <input type="number" id="transferAmount" name="transferAmount" placeholder="0.00" step="0.01" min="0.01" required>
+                                            <div class="amount-suggestions">
+                                                <button type="button" class="amount-btn" onclick="setAmount(100)">$100</button>
+                                                <button type="button" class="amount-btn" onclick="setAmount(500)">$500</button>
+                                                <button type="button" class="amount-btn" onclick="setAmount(1000)">$1K</button>
+                                            </div>
+                                        </div>
+                                        <div class="transfer-fee">
+                                            <span>Transfer Fee: <strong>Free</strong></span>
+                                            <span class="arrival-time">Arrives instantly</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="transferNote">Note (Optional)</label>
+                                    <div class="input-container">
+                                        <i class="fas fa-comment input-icon"></i>
+                                        <input type="text" id="transferNote" name="transferNote" placeholder="What's this for?">
+                                        <div class="input-focus-effect"></div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="transfer-btn premium-btn">
+                                    <div class="btn-content">
+                                        <i class="fas fa-paper-plane"></i>
+                                        <span>Send Money</span>
+                                    </div>
+                                    <div class="btn-loader">
+                                        <div class="spinner"></div>
+                                    </div>
+                                    <div class="btn-success">
+                                        <i class="fas fa-check"></i>
+                                        <span>Sent!</span>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Scheduled Transfer Tab -->
+                        <div class="transfer-tab-content" id="scheduled-tab">
+                            <div class="scheduled-transfers">
+                                <div class="no-scheduled">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    <h3>No Scheduled Transfers</h3>
+                                    <p>Set up recurring payments or future transfers</p>
+                                    <button class="premium-btn-outline" onclick="createScheduledTransfer()">
+                                        <i class="fas fa-plus"></i>
+                                        <span>Create Schedule</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- International Transfer Tab -->
+                        <div class="transfer-tab-content" id="international-tab">
+                            <div class="international-transfer">
+                                <div class="currency-converter">
+                                    <div class="converter-header">
+                                        <h3>Currency Exchange</h3>
+                                        <div class="exchange-rate">
+                                            1 USD = 0.85 EUR
+                                            <span class="rate-trend positive">
+                                                <i class="fas fa-arrow-up"></i>
+                                                +0.02%
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="currency-inputs">
+                                        <div class="currency-input">
+                                            <select class="currency-select">
+                                                <option value="USD">USD</option>
+                                                <option value="EUR">EUR</option>
+                                                <option value="GBP">GBP</option>
+                                            </select>
+                                            <input type="number" placeholder="0.00" class="amount-input">
+                                        </div>
+                                        <button class="currency-swap">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </button>
+                                        <div class="currency-input">
+                                            <select class="currency-select">
+                                                <option value="EUR">EUR</option>
+                                                <option value="USD">USD</option>
+                                                <option value="GBP">GBP</option>
+                                            </select>
+                                            <input type="number" placeholder="0.00" class="amount-input" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Recipients -->
+            <div class="recipients-section fade-in-up delay-3">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>Recent Recipients</h2>
+                        <p>Send money to your frequent contacts</p>
+                    </div>
+                </div>
+                
+                <div class="recipients-container">
+                    <div class="recipient-card hover-lift" onclick="selectRecipient('jane@example.com', 'Jane Smith')">
+                        <div class="recipient-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&h=60&fit=crop&crop=face" alt="Jane Smith">
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="recipient-info">
+                            <h4>Jane Smith</h4>
+                            <p>jane@example.com</p>
+                            <span class="last-transfer">Last: $250 • 2 days ago</span>
+                        </div>
+                        <button class="quick-send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+
+                    <div class="recipient-card hover-lift" onclick="selectRecipient('mike@example.com', 'Mike Johnson')">
+                        <div class="recipient-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" alt="Mike Johnson">
+                        </div>
+                        <div class="recipient-info">
+                            <h4>Mike Johnson</h4>
+                            <p>mike@example.com</p>
+                            <span class="last-transfer">Last: $100 • 1 week ago</span>
+                        </div>
+                        <button class="quick-send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+
+                    <div class="recipient-card hover-lift" onclick="selectRecipient('sarah@example.com', 'Sarah Wilson')">
+                        <div class="recipient-avatar">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face" alt="Sarah Wilson">
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="recipient-info">
+                            <h4>Sarah Wilson</h4>
+                            <p>sarah@example.com</p>
+                            <span class="last-transfer">Last: $75 • 3 days ago</span>
+                        </div>
+                        <button class="quick-send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+
+                    <div class="add-recipient-card hover-lift" onclick="showAddRecipient()">
+                        <div class="add-recipient-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="add-recipient-text">
+                            <h4>Add New</h4>
+                            <p>Add a new recipient</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Transactions -->
+            <div class="transactions-section fade-in-up delay-2">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>Recent Transactions</h2>
+                        <p>Your latest account activity</p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Income</button>
+                        <button class="filter-btn">Expenses</button>
+                        <button class="view-all-btn">
+                            <span>View All</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="transactions-container glass-effect">
+                    <div class="transactions-list" id="transactionsList">
+                        <!-- Transactions will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Transfer Modal -->
+        <div id="transferModal" class="transfer-modal">
+            <div class="modal-backdrop" onclick="closeTransferModal()"></div>
+            <div class="transfer-modal-content premium-modal">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <div class="transfer-icon-header">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <div>
+                            <h3>Send Money</h3>
+                            <p>Transfer funds instantly</p>
+                        </div>
+                    </div>
+                    <button class="close-btn" onclick="closeTransferModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="transfer-modal-body">
+                    <!-- Step Indicator -->
+                    <div class="transfer-steps">
+                        <div class="step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <span>Amount</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step" data-step="2">
+                            <div class="step-number">2</div>
+                            <span>Recipient</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step" data-step="3">
+                            <div class="step-number">3</div>
+                            <span>Confirm</span>
+                        </div>
+                    </div>
+
+                    <!-- Transfer Form -->
+                    <form id="modalTransferForm" class="modal-transfer-form">
+                        <!-- Step 1: Amount -->
+                        <div class="transfer-step-content active" id="step-1">
+                            <div class="amount-selection">
+                                <h4>How much would you like to send?</h4>
+                                <div class="modal-amount-input">
+                                    <span class="currency-symbol">$</span>
+                                    <input type="number" id="modalTransferAmount" placeholder="0.00" step="0.01" min="0.01" required>
+                                </div>
+                                <div class="quick-amounts">
+                                    <button type="button" class="quick-amount-btn" onclick="setModalAmount(50)">$50</button>
+                                    <button type="button" class="quick-amount-btn" onclick="setModalAmount(100)">$100</button>
+                                    <button type="button" class="quick-amount-btn" onclick="setModalAmount(250)">$250</button>
+                                    <button type="button" class="quick-amount-btn" onclick="setModalAmount(500)">$500</button>
+                                </div>
+                                <div class="account-selection">
+                                    <label>From Account</label>
+                                    <div class="account-options">
+                                        <div class="account-option active" data-account="checking">
+                                            <div class="account-icon">
+                                                <i class="fas fa-credit-card"></i>
+                                            </div>
+                                            <div class="account-details">
+                                                <span class="account-name">Checking</span>
+                                                <span class="account-balance">$8,234.50</span>
+                                            </div>
+                                            <div class="account-check">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </div>
+                                        <div class="account-option" data-account="savings">
+                                            <div class="account-icon">
+                                                <i class="fas fa-piggy-bank"></i>
+                                            </div>
+                                            <div class="account-details">
+                                                <span class="account-name">Savings</span>
+                                                <span class="account-balance">$4,111.17</span>
+                                            </div>
+                                            <div class="account-check">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Recipient -->
+                        <div class="transfer-step-content" id="step-2">
+                            <div class="recipient-selection">
+                                <h4>Who are you sending money to?</h4>
+                                <div class="recipient-input-container">
+                                    <div class="input-container">
+                                        <i class="fas fa-user input-icon"></i>
+                                        <input type="text" id="modalRecipient" placeholder="Enter email or phone number" required>
+                                        <div class="input-focus-effect"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="recent-recipients-modal">
+                                    <h5>Recent Recipients</h5>
+                                    <div class="recipients-grid">
+                                        <div class="recipient-quick-select" onclick="selectModalRecipient('jane@example.com', 'Jane Smith')">
+                                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Jane Smith">
+                                            <span>Jane</span>
+                                        </div>
+                                        <div class="recipient-quick-select" onclick="selectModalRecipient('mike@example.com', 'Mike Johnson')">
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Mike Johnson">
+                                            <span>Mike</span>
+                                        </div>
+                                        <div class="recipient-quick-select" onclick="selectModalRecipient('sarah@example.com', 'Sarah Wilson')">
+                                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Sarah Wilson">
+                                            <span>Sarah</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="transfer-note-section">
+                                    <label for="modalTransferNote">Add a note (optional)</label>
+                                    <div class="input-container">
+                                        <i class="fas fa-comment input-icon"></i>
+                                        <input type="text" id="modalTransferNote" placeholder="What's this for?">
+                                        <div class="input-focus-effect"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Confirmation -->
+                        <div class="transfer-step-content" id="step-3">
+                            <div class="transfer-confirmation">
+                                <h4>Confirm Transfer</h4>
+                                <div class="confirmation-card">
+                                    <div class="confirmation-header">
+                                        <div class="confirmation-amount">
+                                            <span class="amount-label">Sending</span>
+                                            <span class="amount-value" id="confirmAmount">$0.00</span>
+                                        </div>
+                                        <div class="transfer-arrow-confirm">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="confirmation-details">
+                                        <div class="detail-row">
+                                            <span>From</span>
+                                            <span id="confirmFromAccount">Checking Account</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span>To</span>
+                                            <span id="confirmToRecipient">-</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span>Note</span>
+                                            <span id="confirmNote">-</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span>Fee</span>
+                                            <span class="free-fee">Free</span>
+                                        </div>
+                                        <div class="detail-row total">
+                                            <span>Total</span>
+                                            <span id="confirmTotal">$0.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="modal-navigation">
+                            <button type="button" class="nav-btn secondary" id="prevBtn" onclick="previousStep()" style="display: none;">
+                                <i class="fas fa-arrow-left"></i>
+                                <span>Back</span>
+                            </button>
+                            <button type="button" class="nav-btn primary" id="nextBtn" onclick="nextStep()">
+                                <span>Continue</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button type="submit" class="nav-btn primary" id="confirmBtn" style="display: none;">
+                                <div class="btn-content">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Send Money</span>
+                                </div>
+                                <div class="btn-loader">
+                                    <div class="spinner"></div>
+                                </div>
+                                <div class="btn-success">
+                                    <i class="fas fa-check"></i>
+                                    <span>Sent!</span>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        checkAuth('user');
+        loadTransactions();
+        initCounters();
+        initDashboard();
+    </script>
+</body>
+</html>
