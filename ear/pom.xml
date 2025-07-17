@@ -34,6 +34,13 @@
             <type>war</type>
         </dependency>
 
+        <dependency>
+            <groupId>com.regal.app</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -46,7 +53,6 @@
                 <configuration>
                     <defaultLibBundleDir>Lib</defaultLibBundleDir>
                     <modules>
-                        <module>
                             <ejbModule>
                                 <groupId>com.regal.app</groupId>
                                 <artifactId>ejb</artifactId>
@@ -58,10 +64,8 @@
                                 <artifactId>web</artifactId>
                                 <contextRoot>/regal-bank</contextRoot>
                                 <bundleFinalName>web-module.war</bundleFinalName>
-
                             </webModule>
 
-                        </module>
                     </modules>
                 </configuration>
 

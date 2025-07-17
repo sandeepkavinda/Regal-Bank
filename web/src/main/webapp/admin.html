@@ -6,223 +6,244 @@
     <title>Admin Panel - SecureBank Pro</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
 </head>
 <body class="theme-transition">
-    <!-- Animated Background -->
-    <div class="animated-bg dashboard-bg">
-        <div class="floating-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
+<!-- Animated Background -->
+<div class="animated-bg dashboard-bg">
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
+</div>
 
-    <div class="dashboard-container">
-        <!-- Premium Header -->
-        <header class="header glass-effect">
-            <div class="header-content">
-                <div class="logo-section fade-in-left">
-                    <div class="logo-mini">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <div class="brand-text">
-                        <span class="brand-name">SecureBank</span>
-                        <span class="brand-suffix">Admin</span>
-                    </div>
+<div class="dashboard-container">
+    <!-- Premium Header -->
+    <header class="header glass-effect">
+        <div class="header-content">
+            <div class="logo-section fade-in-left">
+                <div class="logo-mini">
+                    <i class="fas fa-university"></i>
                 </div>
-
-                <div class="header-actions fade-in-right">
-                    <button class="theme-toggle-header" onclick="toggleTheme()">
-                        <i class="fas fa-sun sun-icon"></i>
-                        <i class="fas fa-moon moon-icon"></i>
-                    </button>
-                    <div class="admin-badge">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Administrator</span>
-                    </div>
-                    <button class="header-btn notification-btn">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">5</span>
-                    </button>
-                    <button class="header-btn">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                    <button class="logout-btn premium-btn-outline" onclick="logout()">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <div class="main-content">
-            <div class="welcome-section fade-in-up">
-                <div class="welcome-text">
-                    <h1>Admin <span class="highlight">Dashboard</span> 🛡️</h1>
-                    <p>Manage users and monitor system performance</p>
+                <div class="brand-text">
+                    <span class="brand-name">SecureBank</span>
+                    <span class="brand-suffix">Admin</span>
                 </div>
             </div>
 
-            <!-- Premium Stats Cards -->
-            <div class="stats-cards fade-in-up delay-1">
-                <div class="stat-card premium-card hover-lift">
-                    <div class="stat-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-number counter" data-target="0" id="totalUsersCounter">0</div>
-                        <div class="stat-label">Total Users</div>
-                        <div class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>+12% this month</span>
-                        </div>
-                    </div>
+            <div class="header-actions fade-in-right">
+                <button class="theme-toggle-header" onclick="toggleTheme()">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </button>
+                <div class="admin-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Administrator</span>
                 </div>
+                <button class="header-btn notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                <button class="header-btn">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="logout-btn premium-btn-outline" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-                <div class="stat-card premium-card hover-lift">
-                    <div class="stat-icon active">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-number counter" data-target="0" id="activeUsersCounter">0</div>
-                        <div class="stat-label">Active Users</div>
-                        <div class="stat-change positive" id="activeRateDisplay">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>0% active rate</span>
-                        </div>
-                    </div>
+    <div class="main-content">
+        <div class="welcome-section fade-in-up">
+            <div class="welcome-text">
+                <h1>Admin <span class="highlight">Dashboard</span> 🛡️</h1>
+                <p>Manage users and monitor system performance</p>
+            </div>
+        </div>
+
+        <!-- Premium Stats Cards -->
+        <div class="stats-cards fade-in-up delay-1">
+            <div class="stat-card premium-card hover-lift">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
                 </div>
-
-                <div class="stat-card premium-card hover-lift">
-                    <div class="stat-icon deposits">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-number" id="totalDepositsDisplay">$0</div>
-                        <div class="stat-label">Total Deposits</div>
-                        <div class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>+8.2% growth</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stat-card premium-card hover-lift">
-                    <div class="stat-icon average">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-number" id="avgBalanceDisplay">$0</div>
-                        <div class="stat-label">Average Balance</div>
-                        <div class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>Per account</span>
-                        </div>
+                <div class="stat-content">
+                    <div class="stat-number counter" data-target="0" id="totalUsersCounter">0</div>
+                    <div class="stat-label">Total Users</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+12% this month</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Premium User Management -->
-            <div class="user-management-section fade-in-up delay-2">
-                <div class="section-header">
-                    <div class="section-title">
-                        <h2>User Management</h2>
-                        <p>Manage customer accounts and permissions</p>
-                    </div>
-                    <button class="add-user-btn premium-btn" onclick="openAddUserModal()">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Add New User</span>
-                    </button>
+            <div class="stat-card premium-card hover-lift">
+                <div class="stat-icon active">
+                    <i class="fas fa-user-check"></i>
                 </div>
-                
-                <div class="users-container glass-effect">
-                    <div class="users-header">
-                        <div class="search-container">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Search users..." class="search-input">
-                        </div>
-                        <div class="filter-options">
-                            <button class="filter-btn active">All Users</button>
-                            <button class="filter-btn">Active</button>
-                            <button class="filter-btn">Inactive</button>
-                        </div>
+                <div class="stat-content">
+                    <div class="stat-number counter" data-target="0" id="activeUsersCounter">0</div>
+                    <div class="stat-label">Active Users</div>
+                    <div class="stat-change positive" id="activeRateDisplay">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>0% active rate</span>
                     </div>
-                    <div class="users-list" id="usersList">
-                        <!-- Users will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="stat-card premium-card hover-lift">
+                <div class="stat-icon deposits">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number" id="totalDepositsDisplay">$0</div>
+                    <div class="stat-label">Total Deposits</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+8.2% growth</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card premium-card hover-lift">
+                <div class="stat-icon average">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number" id="avgBalanceDisplay">$0</div>
+                    <div class="stat-label">Average Balance</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>Per account</span>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Premium Add User Modal -->
-    <div id="addUserModal" class="modal">
-        <div class="modal-backdrop" onclick="closeAddUserModal()"></div>
-        <div class="modal-content premium-modal">
-            <div class="modal-header">
-                <div class="modal-title">
+        <!-- Premium User Management -->
+        <div class="user-management-section fade-in-up delay-2">
+            <div class="section-header">
+                <div class="section-title">
+                    <h2>User Management</h2>
+                    <p>Manage customer accounts and permissions</p>
+                </div>
+                <button class="add-user-btn premium-btn" onclick="openAddUserModal()">
                     <i class="fas fa-user-plus"></i>
-                    <h3>Create New User</h3>
-                </div>
-                <button class="close-btn" onclick="closeAddUserModal()">
-                    <i class="fas fa-times"></i>
+                    <span>Add New User</span>
                 </button>
             </div>
-            <form id="addUserForm" class="add-user-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="userName">Full Name</label>
-                        <div class="input-container">
-                            <i class="fas fa-user input-icon"></i>
-                            <input type="text" id="userName" name="userName" placeholder="Enter full name" required>
-                            <div class="input-focus-effect"></div>
-                        </div>
+
+            <div class="users-container glass-effect">
+                <div class="users-header">
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search users..." class="search-input">
                     </div>
-                    <div class="form-group">
-                        <label for="userEmail">Email Address</label>
-                        <div class="input-container">
-                            <i class="fas fa-envelope input-icon"></i>
-                            <input type="email" id="userEmail" name="userEmail" placeholder="Enter email address" required>
-                            <div class="input-focus-effect"></div>
-                        </div>
+                    <div class="filter-options">
+                        <button class="filter-btn active">All Users</button>
+                        <button class="filter-btn">Active</button>
+                        <button class="filter-btn">Inactive</button>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="userRole">User Role</label>
-                        <div class="select-container">
-                            <select id="userRole" name="userRole">
-                                <option value="user">Customer</option>
-                                <option value="admin">Administrator</option>
-                            </select>
-                            <i class="fas fa-chevron-down select-icon"></i>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="initialBalance">Initial Balance</label>
-                        <div class="input-container">
-                            <i class="fas fa-dollar-sign input-icon"></i>
-                            <input type="number" id="initialBalance" name="initialBalance" step="0.01" placeholder="0.00">
-                            <div class="input-focus-effect"></div>
-                        </div>
-                    </div>
+                <div class="users-list" id="usersList">
+                    <!-- Users will be populated by JavaScript -->
                 </div>
-                <button type="submit" class="submit-btn premium-btn">
-                    <i class="fas fa-plus"></i>
-                    <span>Create User Account</span>
-                </button>
-            </form>
+            </div>
         </div>
     </div>
+</div>
 
-    <script src="script.js"></script>
-    <script>
-        checkAuth('admin');
-        loadUsers();
-        updateStats();
-        initCounters();
-        initAdmin();
-    </script>
+<!-- Premium Add User Modal -->
+<div id="addUserModal" class="modal">
+    <div class="modal-backdrop" onclick="closeAddUserModal()"></div>
+    <div class="modal-content premium-modal">
+        <div class="modal-header">
+            <div class="modal-title">
+                <i class="fas fa-user-plus"></i>
+                <h3>Create New User</h3>
+            </div>
+            <button class="close-btn" onclick="closeAddUserModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="addUserForm" class="add-user-form">
+
+            <!-- <div class="form-group">
+                    <label for="userEmail">Email Address</label>
+                    <div class="input-container">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="email" name="email" placeholder="Email address" required>
+                        <div class="input-focus-effect"></div>
+                    </div>
+                </div> -->
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <div class="input-container">
+                    <i class="fas fa-pen input-icon"></i>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                    <div class="input-focus-effect"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <div class="input-container">
+                    <i class="fas fa-pen input-icon"></i>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                    <div class="input-focus-effect"></div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-container">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" id="email" name="email" placeholder="Email address" required>
+                    <div class="input-focus-effect"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-container">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <div class="input-focus-effect"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="accountBalance">Starting Account Balance</label>
+                <div class="input-container">
+                    <i class="fas fa-wallet input-icon"></i>
+                    <input type="number" id="accountBalance" name="accountBalance"
+                           placeholder="Starting Account Balance" min="0" value="0" required>
+                    <div class="input-focus-effect"></div>
+                </div>
+            </div>
+
+            <button class="submit-btn premium-btn" id="registerUserButton" onclick="registerUser();">
+                <i class="fas fa-plus"></i>
+                <span>Create User Account</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="script.js"></script>
+<!--    <script>-->
+<!--        checkAuth('admin');-->
+<!--        loadUsers();-->
+<!--        updateStats();-->
+<!--        initCounters();-->
+<!--        initAdmin();-->
+<!--    </script>-->
 </body>
 </html>

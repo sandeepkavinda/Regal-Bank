@@ -43,7 +43,7 @@
                 <p class="fade-in-up delay-1">Premium Banking Experience</p>
             </div>
             
-            <form id="loginForm" class="login-form">
+            <div id="loginForm" class="login-form">
                 <div class="form-group fade-in-up delay-2">
                     <label for="email">Email Address</label>
                     <div class="input-container">
@@ -67,7 +67,7 @@
                 
                 <div id="errorMessage" class="error-message slide-down" style="display: none;"></div>
                 
-                <button type="submit" class="login-btn premium-btn fade-in-up delay-4" id="loginBtn">
+                <button class="login-btn premium-btn fade-in-up delay-4" id="loginBtn" onclick="loginProcess();">
                     <span class="btn-content" id="loginText">
                         <i class="fas fa-sign-in-alt"></i>
                         Sign In Securely
@@ -77,23 +77,6 @@
                     </div>
                     <div class="btn-ripple"></div>
                 </button>
-            </form>
-            
-            <div class="demo-credentials fade-in-up delay-5">
-                <div class="credentials-header">
-                    <i class="fas fa-key"></i>
-                    <span>Demo Access</span>
-                </div>
-                <div class="credentials-grid">
-                    <div class="credential-item">
-                        <div class="credential-role">Administrator</div>
-                        <div class="credential-details">admin@bank.com / admin123</div>
-                    </div>
-                    <div class="credential-item">
-                        <div class="credential-role">Customer</div>
-                        <div class="credential-details">user@bank.com / user123</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
