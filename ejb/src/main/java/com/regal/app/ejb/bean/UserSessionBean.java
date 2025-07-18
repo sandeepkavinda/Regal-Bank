@@ -23,7 +23,10 @@ public class UserSessionBean implements UserService {
 
     @Override
     public User getUserByEmail(String email) {
-        return null;
+        User user = em.createNamedQuery("User.findByEmail", User.class)
+                .setParameter("email", email)
+                .getSingleResult();
+        return user;
     }
 
     @Override
@@ -65,5 +68,17 @@ public class UserSessionBean implements UserService {
 
         return responseDTO;
 
+    }
+
+    @Override
+    public Boolean validate(String email, String password) {
+
+        List<User> users = em.createNamedQuery("User.findByEmailAndPassword", User.class)
+                .setParameter("email", email)
+                .setParameter("password", password)
+                .getResultList();
+
+
+        return !users.isEmpty();
     }
 }

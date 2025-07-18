@@ -1752,14 +1752,33 @@ async function loginProcess() {
         }
     );
 
+    let loginBtn = document.getElementById("loginBtn");
+    loginBtn.innerHTML = "<span>Processing ...</span>";
+
     if (response.ok) {
         var json = await response.json();
 
         if (json.success) {
 
-            window.location = "verify-account.html";
+            if(json.content==="USER"){
+                window.location = "user/dashboard.html";
+            }
+
+            if(json.content==="ADMIN"){
+                window.location = "admin/admin.html";
+            }
+
         } else {
 
+            loginBtn.innerHTML="<span class=\"btn-content\" id=\"loginText\">\n" +
+                "                        <i class=\"fas fa-sign-in-alt\"></i>\n" +
+                "                        Sign In Securely\n" +
+                "                    </span>";
+
+            Swal.fire({
+                text: json.content,
+                icon: "warning"
+            });
         }
     } else {
         console.log("Error");

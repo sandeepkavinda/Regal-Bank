@@ -10,4 +10,6 @@ public interface UserService {
     User getUserByEmail(String email);
     User getUserById(Long id);
     ResponseDTO registerUser(User user);
+    Boolean validate(String email,String password);
+
 }
