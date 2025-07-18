@@ -1850,3 +1850,7 @@ function clearRegisterInputs(){
     document.getElementById("password").value = "";
     document.getElementById("accountBalance").value ="0";
 }
+
+async function logoutUser() {
+    window.location.href = "http://localhost:8080/regal-bank/Logout";
+}
