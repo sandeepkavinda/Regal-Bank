@@ -36,9 +36,6 @@ public class Login extends HttpServlet {
 
         ResponseDTO responseDTO = new ResponseDTO();
 
-        System.out.println(user.getEmail());
-        System.out.println(user.getPassword());
-
         if(user.getEmail().isEmpty()){
             responseDTO.setContent("Enter the Email");
         }else if(user.getPassword().isEmpty()){
@@ -52,9 +49,8 @@ public class Login extends HttpServlet {
             System.out.println("Status : "+ status);
 
             if(status == AuthenticationStatus.SUCCESS){
-
                 User loggedUser = userService.getUserByEmail(user.getEmail());
-
+                request.getSession().setAttribute("user",loggedUser);
                 responseDTO.setSuccess(true);
                 responseDTO.setContent(loggedUser.getUserType().toString());
             }else{

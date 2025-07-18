@@ -11,8 +11,7 @@ import java.io.Serializable;
 })
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String accountNumber;
     private String firstName;
     private String lastName;
     @Column(unique = true)
@@ -27,12 +26,12 @@ public class User implements Serializable {
     public User() {
     }
 
-    public Long getId() {
-        return id;
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public String getFirstName() {

@@ -31,6 +31,5 @@ public class AppIdentityStore implements IdentityStore {
 
         }
         return CredentialValidationResult.INVALID_RESULT;
-
     }
 }

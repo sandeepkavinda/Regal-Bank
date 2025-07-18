@@ -243,7 +243,7 @@ function loadTransactions() {
         </div>
       </div>
       <div class="transaction-amount">
-        <div class="amount-value ${transaction.type}">
+        <div class="amount-value">
           ${transaction.type === "credit" ? "+" : "-"}$${transaction.amount.toFixed(2)}
         </div>
         <div class="status-badge active">${transaction.status}</div>
@@ -1851,6 +1851,115 @@ function clearRegisterInputs(){
     document.getElementById("accountBalance").value ="0";
 }
 
-async function logoutUser() {
+//Logout User Process
+function logoutUser() {
     window.location.href = "http://localhost:8080/regal-bank/Logout";
 }
+
+
+//Load User Dashboard
+async function loadUserDashboard() {
+
+    const response = await fetch(
+        "LoadUserDashboard",
+        {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        }
+    );
+
+    if (response.ok) {
+        let json = await response.json();
+        console.log("Response : " + JSON.stringify(json));
+
+        // if (json.success) {
+        //     closeAddUserModal();
+        //     clearRegisterInputs();
+        //
+        //     Swal.fire({
+        //         title: "Success",
+        //         text: json.content,
+        //         icon: "success"
+        //     });
+        //
+        // } else {
+        //     registerUserButton.innerHTML = " <i class=\"fas fa-plus\"></i> <span>Create User Account</span>";
+        //     Swal.fire({
+        //         text: json.content,
+        //         icon: "warning"
+        //     });
+        // }
+
+    } else {
+        console.log("Error");
+    }
+
+}
+
+
+//Do Transaction Process
+async function transactionProcess() {
+
+    let toUser = document.getElementById("toAccount").value;
+    let transferAmount = document.getElementById("transferAmount").value;
+    let transferNote = document.getElementById("transferNote").value;
+
+    if(toUser===""){
+        showNotification("Enter Beneficiary Account Number","error");
+    }else if(transferAmount===""){
+        showNotification("Enter Amount","error")
+    }else if(transferNote===""){
+        showNotification("Enter Comment","error")
+    }else{
+
+        let transactionData = {
+            toUserAccountNum: document.getElementById("toAccount").value,
+            amount: document.getElementById("transferAmount").value,
+            note: document.getElementById("transferNote").value,
+        }
+
+        const response = await fetch(
+            "TransactionProcess",
+            {
+                method: "POST",
+                body: JSON.stringify(transactionData),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }
+        );
+
+        if (response.ok) {
+            let json = await response.json();
+
+            if (json.success) {
+                Swal.fire({
+                    title: "Success",
+                    text: json.content,
+                    icon: "success"
+                });
+                clearQuickTransferForm();
+
+            } else {
+                Swal.fire({
+                    title: "Warining",
+                    text: json.content,
+                    icon: "warning"
+                });
+            }
+
+        } else {
+            console.log("Error");
+        }
+
+    }
+}
+
+function clearQuickTransferForm(){
+    document.getElementById("toAccount").value="";
+    document.getElementById("transferAmount").value="";
+    document.getElementById("transferNote").value=""
+}
+

@@ -2,10 +2,12 @@ package com.regal.app.ejb.bean;
 
 import com.regal.app.core.dto.ResponseDTO;
 import com.regal.app.core.entity.User;
+import com.regal.app.core.model.AccountNumberGenerator;
 import com.regal.app.core.model.UserRegistrationResult;
 import com.regal.app.ejb.remote.UserService;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
@@ -30,8 +32,8 @@ public class UserSessionBean implements UserService {
     }
 
     @Override
-    public User getUserById(Long id) {
-        User user = em.find(User.class,id);
+    public User getUserByAccountNumber(String AccountNumber) {
+        User user = em.find(User.class,AccountNumber);
         return user;
     }
 
@@ -56,6 +58,8 @@ public class UserSessionBean implements UserService {
             }else if(user.getBalance()<0){
                 responseDTO.setContent("Balance cannot be negative");
             }else{
+                String accountNumber = AccountNumberGenerator.generateAccountNumber();
+                user.setAccountNumber(accountNumber);
                 em.persist(user);
                 responseDTO.setSuccess(true);
                 responseDTO.setContent("User has been registered successfully");
@@ -81,4 +85,57 @@ public class UserSessionBean implements UserService {
 
         return !users.isEmpty();
     }
+
+    @Override
+    public double checkAccountBalanceByAccountNumber(String accountNumber) {
+        try {
+            User user = em.createQuery(
+                            "SELECT u FROM User u WHERE u.accountNumber = :accNo", User.class)
+                    .setParameter("accNo", accountNumber)
+                    .getSingleResult();
+
+            return user.getBalance(); // Account balance
+
+        } catch (NoResultException e) {
+            // Account not found
+            return -1;
+        }
+    }
+
+    @Override
+    public boolean decreaseAccountBalance(String accountNumber, double amountToDeduct) {
+        try {
+            User user = em.createQuery(
+                            "SELECT u FROM User u WHERE u.accountNumber = :accNo", User.class)
+                    .setParameter("accNo", accountNumber)
+                    .getSingleResult();
+
+            if (user.getBalance() >= amountToDeduct) {
+                user.setBalance(user.getBalance() - amountToDeduct);
+                em.merge(user);
+                return true; // success
+            } else {
+                return false; // insufficient balance
+            }
+        } catch (NoResultException e) {
+            return false; // user not found
+        }
+    }
+
+    @Override
+    public boolean increaseAccountBalance(String accountNumber, double amountToAdd) {
+        try {
+            User user = em.createQuery(
+                            "SELECT u FROM User u WHERE u.accountNumber = :accNo", User.class)
+                    .setParameter("accNo", accountNumber)
+                    .getSingleResult();
+
+            user.setBalance(user.getBalance() + amountToAdd);
+            em.merge(user);
+            return true; // success
+        } catch (NoResultException e) {
+            return false; // user not found
+        }
+    }
+
 }

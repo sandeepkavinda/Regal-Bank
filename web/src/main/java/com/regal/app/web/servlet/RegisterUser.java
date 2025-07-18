@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/RegisterUser")
+@WebServlet("/admin/RegisterUser")
 public class RegisterUser extends HttpServlet {
 
     @EJB
