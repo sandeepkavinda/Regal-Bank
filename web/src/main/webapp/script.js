@@ -1872,7 +1872,9 @@ async function loadUserDashboard() {
 
     if (response.ok) {
         let json = await response.json();
-        console.log("Response : " + JSON.stringify(json));
+        console.log(JSON.stringify(json));
+
+
 
         // if (json.success) {
         //     closeAddUserModal();

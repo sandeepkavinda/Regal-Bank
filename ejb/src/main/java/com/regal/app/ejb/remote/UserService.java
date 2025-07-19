@@ -14,4 +14,6 @@ public interface UserService {
     Boolean validate(String email,String password);
     double checkAccountBalanceByAccountNumber(String accountNumber);
     List<User> getAllUsers();
+    double getTotalReceivedAmount(String userAccountNumber);
+    double getTotalSendAmount(String userAccountNumber);
 }

@@ -12,6 +12,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Stateless
 public class TransactionSessionBean implements TransactionServices {
@@ -54,4 +56,23 @@ public class TransactionSessionBean implements TransactionServices {
             return false;
         }
     }
+
+    @Override
+    public List<Transaction> getUserTransactions(String accountNumber) {
+        try {
+            return em.createQuery(
+                            "SELECT t FROM Transaction t " +
+                                    "WHERE t.fromUser.accountNumber = :accountNumber " +
+                                    "   OR t.toUser.accountNumber = :accountNumber " +
+                                    "ORDER BY t.transactionTime DESC", Transaction.class)
+                    .setParameter("accountNumber", accountNumber)
+                    .getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+
 }

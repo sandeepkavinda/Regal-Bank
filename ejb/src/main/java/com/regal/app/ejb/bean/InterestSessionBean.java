@@ -14,6 +14,8 @@ import jakarta.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Stateless
 public class InterestSessionBean implements InterestService {
@@ -57,5 +59,22 @@ public class InterestSessionBean implements InterestService {
         }
 
     }
+
+    @Override
+    public List<Interest> getUserInterestHistory(String accountNumber) {
+        try {
+            return em.createQuery(
+                            "SELECT i FROM Interest i " +
+                                    "WHERE i.user.accountNumber = :accountNumber " +
+                                    "ORDER BY i.dateTime DESC", Interest.class)
+                    .setParameter("accountNumber", accountNumber)
+                    .getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
 
 }

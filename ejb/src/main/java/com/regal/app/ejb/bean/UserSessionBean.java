@@ -118,4 +118,36 @@ public class UserSessionBean implements UserService {
         }
     }
 
+    @Override
+    public double getTotalReceivedAmount(String userAccountNumber) {
+        try {
+            Double total = em.createQuery(
+                            "SELECT SUM(t.amount) FROM Transaction t WHERE t.toUser.accountNumber = :accountNumber", Double.class)
+                    .setParameter("accountNumber", userAccountNumber)
+                    .getSingleResult();
+
+            return total != null ? total : 0.0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0.0;
+        }
+    }
+
+    @Override
+    public double getTotalSendAmount(String userAccountNumber) {
+        try {
+            Double total = em.createQuery(
+                            "SELECT SUM(t.amount) FROM Transaction t WHERE t.fromUser.accountNumber = :accountNumber", Double.class)
+                    .setParameter("accountNumber", userAccountNumber)
+                    .getSingleResult();
+
+            return total != null ? total : 0.0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0.0;
+        }
+    }
+
 }
