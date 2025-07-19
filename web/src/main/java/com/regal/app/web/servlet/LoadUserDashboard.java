@@ -39,7 +39,7 @@ public class LoadUserDashboard extends HttpServlet {
         if(user != null){
             Gson gson = new Gson();
             JsonObject jsonObject = new JsonObject();
-            jsonObject.add("user",gson.toJsonTree(user));
+            jsonObject.add("userData",gson.toJsonTree(user));
 
             double totalSend = userService.getTotalSendAmount(user.getAccountNumber());
             jsonObject.addProperty("totalSend",totalSend);
@@ -47,19 +47,21 @@ public class LoadUserDashboard extends HttpServlet {
             double totalReceived = userService.getTotalReceivedAmount(user.getAccountNumber());
             jsonObject.addProperty("totalReceived",totalReceived);
 
+            double totalInterest = userService.getTotalInterestByUser(user.getAccountNumber());
+            jsonObject.addProperty("totalInterest",totalInterest);
+
             List<Transaction> transactionHistory = transactionServices.getUserTransactions(user.getAccountNumber());
-            jsonObject.add("transactionHistory",gson.toJsonTree(transactionHistory));
+            jsonObject.add("transactionHistoryData",gson.toJsonTree(transactionHistory));
 
             List<Interest> interestHistory = interestService.getUserInterestHistory(user.getAccountNumber());
-            jsonObject.add("interestHistory",gson.toJsonTree(interestHistory));
+            jsonObject.add("interestHistoryData",gson.toJsonTree(interestHistory));
+
+            jsonObject.addProperty("success", true);
 
             System.out.println(gson.toJson(jsonObject));
-            jsonObject.addProperty("success", true);
             response.setContentType("application/json");
             response.getWriter().write(gson.toJson(jsonObject));
         }
-
-
 
     }
 }

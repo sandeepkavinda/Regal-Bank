@@ -16,4 +16,5 @@ public interface UserService {
     List<User> getAllUsers();
     double getTotalReceivedAmount(String userAccountNumber);
     double getTotalSendAmount(String userAccountNumber);
+    double getTotalInterestByUser(String userAccountNumber);
 }

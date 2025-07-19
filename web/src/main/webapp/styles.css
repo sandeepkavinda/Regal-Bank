@@ -1165,6 +1165,7 @@ body {
 .users-container {
   border-radius: 20px;
   overflow: hidden;
+  margin: 0 100px;
 }
 
 .users-header {
@@ -3068,7 +3069,7 @@ body {
 }
 
 .amount-value {
-  font-size: 36px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--text-primary);
   display: block;

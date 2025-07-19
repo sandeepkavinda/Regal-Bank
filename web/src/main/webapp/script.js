@@ -186,8 +186,8 @@ function animateCounter(element, target, duration = 2000) {
             clearInterval(timer)
         }
 
-        if (element.textContent.includes("$")) {
-            element.textContent = `$${current.toLocaleString("en-US", {
+        if (element.textContent.includes("Rs.")) {
+            element.textContent = `Rs. ${current.toLocaleString("en-LK", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
             })}`
@@ -234,9 +234,7 @@ function loadTransactions() {
 
         transactionElement.innerHTML = `
       <div class="transaction-info">
-        <div class="transaction-icon ${transaction.type}">
-          <i class="${transaction.icon}"></i>
-        </div>
+       
         <div class="transaction-details">
           <h4>${transaction.description}</h4>
           <p>${formatDate(transaction.date)} • ${transaction.category}</p>
@@ -1874,25 +1872,122 @@ async function loadUserDashboard() {
         let json = await response.json();
         console.log(JSON.stringify(json));
 
+        let userData = json.userData;
+        let totalSend = json.totalSend;
+        let totalReceived = json.totalReceived;
+        let totalInterest = json.totalInterest;
+        let transactionHistoryData = json.transactionHistoryData;
+        let interestHistoryData = json.interestHistoryData;
+
+        if (json.success) {
+
+            document.getElementById("welcome-user-name").innerHTML=userData.firstName;
+            document.getElementById("current-balance").setAttribute('data-target', userData.balance);
+            document.getElementById("receive-amount").setAttribute('data-target', totalReceived);
+            document.getElementById("send-amount").setAttribute('data-target', totalSend);
+            document.getElementById("interest-amount").setAttribute('data-target', totalInterest);
+            document.getElementById("fromAccount").value = userData.accountNumber;
+            document.getElementById("userProfileName").innerHTML = userData.firstName+ " "+ userData.lastName;
+            initCounters();
+
+            let transactionSection = document.getElementById("transactionsList");
+            let interestList = document.getElementById("interestList");
+            transactionSection.innerHTML="";
+            interestList.innerHTML="";
+
+            transactionHistoryData.forEach((transaction) => {
+
+                let date = transaction.transactionTime.date;
+                let time = transaction.transactionTime.time;
+                let dateTime =  date.year+"-"+date.month+"-"+date.day+" "+ time.hour+":"+time.minute+":"+time.second;
+                const formattedDateTime = new Date(dateTime).toDateString();
+
+                const transactionAmount = "Rs." + transaction.amount.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+
+                if(transaction.fromUser.accountNumber == userData.accountNumber){
+                    //Send Money
+                    transactionSection.innerHTML+=`
+                    <div class="transaction-item fade-in-up">
+                        <div class="transaction-info">
+                            <div class="transaction-details">
+                                <h4>${transaction.note}</h4>
+                                <p>${"To : " + transaction.toUser.firstName + " "+ transaction.toUser.lastName}</p>
+                                <p>${"Acc Number : " + transaction.toUser.accountNumber}</p>
+                                <p>${formattedDateTime}</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount">
+                            <div class="amount-value">${"- "+ transactionAmount}</div>
+                                            
+                            <div class="status-badge active">Sent</div>
+                        </div>
+                    </div>
+                    `;
+
+                }else if(transaction.toUser.accountNumber == userData.accountNumber){
+                    //Receive Money
+                    transactionSection.innerHTML+=`
+                    <div class="transaction-item fade-in-up">
+                        <div class="transaction-info">
+                            <div class="transaction-details">
+                                <h4>${transaction.note}</h4>
+                                <p>${"From : "+ transaction.fromUser.firstName + " "+ transaction.fromUser.lastName}</p>
+                                <p>${"Acc Number : " + transaction.fromUser.accountNumber}</p>
+                                <p>${formattedDateTime}</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount">
+                            <div class="amount-value">${"+ " + transactionAmount}</div>
+                                            
+                            <div class="status-badge active">Received</div>
+                        </div>
+                    </div>
+                    `;
+
+                }
+            });
+
+            interestHistoryData.forEach((interest) => {
+
+                let date = interest.dateTime.date;
+                let time = interest.dateTime.time;
+                let dateTime =  date.year+"-"+date.month+"-"+date.day+" "+ time.hour+":"+time.minute+":"+time.second;
+                const formattedDateTime = new Date(dateTime).toDateString();
+
+                const interestAmount = "Rs." + interest.amount.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+
+                interestList.innerHTML += `
+                    <div class="transaction-item fade-in-up">
+                        <div class="transaction-info">
+                            <div class="transaction-details">
+                                <h4>${formattedDateTime}</h4>
+                                <p>Monthly Interest</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount">
+                            <div class="amount-value">${"+ " + interestAmount}</div>
+                        </div>
+                    </div>
+                `;
 
 
-        // if (json.success) {
-        //     closeAddUserModal();
-        //     clearRegisterInputs();
-        //
-        //     Swal.fire({
-        //         title: "Success",
-        //         text: json.content,
-        //         icon: "success"
-        //     });
-        //
-        // } else {
-        //     registerUserButton.innerHTML = " <i class=\"fas fa-plus\"></i> <span>Create User Account</span>";
-        //     Swal.fire({
-        //         text: json.content,
-        //         icon: "warning"
-        //     });
-        // }
+            });
+
+
+
+        } else {
+            registerUserButton.innerHTML = " <i class=\"fas fa-plus\"></i> <span>Create User Account</span>";
+            Swal.fire({
+                text: json.content,
+                icon: "warning"
+            });
+        }
 
     } else {
         console.log("Error");

@@ -150,4 +150,20 @@ public class UserSessionBean implements UserService {
         }
     }
 
+    @Override
+    public double getTotalInterestByUser(String userAccountNumber) {
+        try {
+            Double total = em.createQuery(
+                            "SELECT SUM(i.amount) FROM Interest i WHERE i.user.accountNumber = :userAccountNumber", Double.class)
+                    .setParameter("userAccountNumber", userAccountNumber)
+                    .getSingleResult();
+
+            return total != null ? total : 0.0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0.0;
+        }
+    }
+
 }
