@@ -2,6 +2,8 @@ package com.regal.app.ejb.bean;
 
 import com.regal.app.core.dto.ResponseDTO;
 import com.regal.app.core.entity.User;
+import com.regal.app.core.entity.UserStatus;
+import com.regal.app.core.entity.UserType;
 import com.regal.app.core.model.AccountNumberGenerator;
 import com.regal.app.core.model.UserRegistrationResult;
 import com.regal.app.ejb.remote.UserService;
@@ -10,6 +12,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 
+import java.util.Collections;
 import java.util.List;
 
 @Stateless
@@ -103,38 +106,15 @@ public class UserSessionBean implements UserService {
     }
 
     @Override
-    public boolean decreaseAccountBalance(String accountNumber, double amountToDeduct) {
+    public List<User> getAllUsers() {
         try {
-            User user = em.createQuery(
-                            "SELECT u FROM User u WHERE u.accountNumber = :accNo", User.class)
-                    .setParameter("accNo", accountNumber)
-                    .getSingleResult();
-
-            if (user.getBalance() >= amountToDeduct) {
-                user.setBalance(user.getBalance() - amountToDeduct);
-                em.merge(user);
-                return true; // success
-            } else {
-                return false; // insufficient balance
-            }
-        } catch (NoResultException e) {
-            return false; // user not found
-        }
-    }
-
-    @Override
-    public boolean increaseAccountBalance(String accountNumber, double amountToAdd) {
-        try {
-            User user = em.createQuery(
-                            "SELECT u FROM User u WHERE u.accountNumber = :accNo", User.class)
-                    .setParameter("accNo", accountNumber)
-                    .getSingleResult();
-
-            user.setBalance(user.getBalance() + amountToAdd);
-            em.merge(user);
-            return true; // success
-        } catch (NoResultException e) {
-            return false; // user not found
+            return em.createQuery("SELECT u FROM User u WHERE u.userStatus = :status AND u.userType = :type", User.class)
+                    .setParameter("status", UserStatus.ACTIVE)
+                    .setParameter("type", UserType.USER)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList(); // Return empty list if error occurs
         }
     }
 

@@ -1944,7 +1944,7 @@ async function transactionProcess() {
 
             } else {
                 Swal.fire({
-                    title: "Warining",
+                    title: "Warning",
                     text: json.content,
                     icon: "warning"
                 });
