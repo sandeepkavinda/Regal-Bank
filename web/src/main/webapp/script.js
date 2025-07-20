@@ -2035,16 +2035,21 @@ async function transactionProcess() {
                 Swal.fire({
                     title: "Success",
                     text: json.content,
-                    icon: "success"
+                    icon: "success",
+                    showConfirmButton: false
                 });
-                clearQuickTransferForm();
+
+                setTimeout(() => {
+                    window.location.reload();
+                    }, 1500);
 
             } else {
                 Swal.fire({
                     title: "Warning",
                     text: json.content,
-                    icon: "warning"
+                    icon: "warning",
                 });
+
             }
 
         } else {

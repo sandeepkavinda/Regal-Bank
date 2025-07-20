@@ -34,21 +34,13 @@
             </div>
 
             <div class="header-actions fade-in-right">
-                <button class="theme-toggle-header" onclick="toggleTheme()">
-                    <i class="fas fa-sun sun-icon"></i>
-                    <i class="fas fa-moon moon-icon"></i>
+                <button class="header-btn theme-toggle-header" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i>
                 </button>
                 <div class="admin-badge">
                     <i class="fas fa-shield-alt"></i>
                     <span>Administrator</span>
                 </div>
-                <button class="header-btn notification-btn">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">5</span>
-                </button>
-                <button class="header-btn">
-                    <i class="fas fa-cog"></i>
-                </button>
                 <button class="logout-btn premium-btn-outline" onclick="logoutUser()">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
@@ -238,12 +230,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../script.js"></script>
-<!--    <script>-->
-<!--        checkAuth('admin');-->
-<!--        loadUsers();-->
-<!--        updateStats();-->
-<!--        initCounters();-->
-<!--        initAdmin();-->
-<!--    </script>-->
+    <script>
+        loadUsers();
+        updateStats();
+        initCounters();
+        initAdmin();
+    </script>
 </body>
 </html>

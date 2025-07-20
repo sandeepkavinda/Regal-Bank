@@ -69,6 +69,8 @@ public class TransactionProcess extends HttpServlet {
                         Boolean transactionSuccess = transactionServices.addTransaction(fromUserAccountNum, toUserAccountNum, amount, note);
 
                         if(transactionSuccess){
+                            loggedUser.setBalance(loggedUser.getBalance()-amount);
+                            request.getSession().setAttribute("user", loggedUser);
                             responseDTO.setSuccess(true);
                             responseDTO.setContent("Transaction Success");
                         }else {
